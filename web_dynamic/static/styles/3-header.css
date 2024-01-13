@@ -10,18 +10,18 @@ header .logo {
   height: 100%;
 }
 #api_status {
-  position: absolute;
-  text-align: right;
+  float: right;
   background-color: #cccccc;
 
   border-radius: 50%;
   width: 40px;
   height: 40px;
 
+  margin: 0;
   top: 50%;
   right: 30px;
-  transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
+  transform: translateY(-50%, -50%);
+  -ms-transform: translateY(-50%, -50%);
 }
 .available {
   background-color: #ff545f;
