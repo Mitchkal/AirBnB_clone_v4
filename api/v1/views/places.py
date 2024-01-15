@@ -129,6 +129,7 @@ def places_search():
         abort(400, description="Not a JSON")
 
     data = request.get_json()
+    print(f"Received request data : {data}")
 
     if data and len(data):
         states = data.get('states', None)
