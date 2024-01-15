@@ -34,8 +34,10 @@ $(document).ready(function () {
       </article>
           `;
   }
+
   $.get("http://0.0.0.0:5001/api/v1/status/", function (data) {
     const status = data.status;
+    alert("Status is");
     updateStatusClass(status);
   });
 
@@ -78,6 +80,12 @@ $(document).ready(function () {
         const placeArticle = createPlaceArticle(place);
         placesSection.append(placeArticle);
       });
+    }).fail(function (xhr, textStatus, errorThrown) {
+      console.error("Error fetching places:", errorThrown);
+      console.log("Status code:", xhr.status);
+      console.log("textstatus", textStatus);
+      console.log("Status text:", xhr.statusText);
+      console.log("Response:", xhr.responseText);
     });
   });
 });
