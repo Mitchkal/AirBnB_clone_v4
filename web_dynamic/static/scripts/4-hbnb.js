@@ -33,7 +33,9 @@ $(document).ready(function () {
           `;
   }
 
-  $.get("http://0.0.0.0:5001/api/v1/status/", function (data) {
+  console.log("hello");
+
+  $.get("http://localhost:5001/api/v1/status/", function (data) {
     const status = data.status;
     alert("Status is");
     updateStatusClass(status);
@@ -67,18 +69,22 @@ $(document).ready(function () {
 
   $("button").on("click", function () {
     // console.log("button clicked");
-    // alert("Button clicked");
-    $.post("http://0.0.0.0:5001/api/v1/places_search/", {}, function (data) {
-      const places = data;
-      const placesSection = $(".places");
+    alert("Button clicked");
+    $.post(
+      "http://localhost:5001/api/v1/places_search/",
+      {},
+      function (data, status) {
+        const places = data;
+        const placesSection = $(".places");
 
-      placesSection.empty();
-
-      places.forEach(function (place) {
-        const placeArticle = createPlaceArticle(place);
-        placesSection.append(placeArticle);
-      });
-    }).fail(function (xhr, textStatus, errorThrown) {
+        placesSection.empty();
+        alert("Data: " + data + "\nStatus: status");
+        places.forEach(function (place) {
+          const placeArticle = createPlaceArticle(place);
+          placesSection.append(placeArticle);
+        });
+      }
+    ).fail(function (xhr, textStatus, errorThrown) {
       console.error("Error fetching places:", errorThrown);
       console.log("Status code:", xhr.status);
       console.log("textstatus", textStatus);
